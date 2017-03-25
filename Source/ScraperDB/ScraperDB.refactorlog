@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="76d5fcf3-1c0a-469c-9858-882b525272a9" ChangeDateTime="03/24/2017 23:26:02">
+    <Property Name="ElementName" Value="[dbo].[Job].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Job]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RowId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c7c00324-6762-4b48-91fa-76a0f3957b51" ChangeDateTime="03/24/2017 23:42:13">
+    <Property Name="ElementName" Value="[dbo].[Job].[ProcessingBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Job]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessorKey" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="37e90052-93f8-441a-b79b-9aa5b1734667" ChangeDateTime="03/25/2017 01:10:32">
+    <Property Name="ElementName" Value="[dbo].[ScraperJob].[HttpResponseCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ScraperJob]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HttpStatusCode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="54f9b277-ffdc-464d-8bfe-5ed646ca63f5" ChangeDateTime="03/25/2017 01:27:00">
+    <Property Name="ElementName" Value="[dbo].[JobStatus].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[JobStatus]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c0add81c-761f-430b-a69d-c3ebfc657543" ChangeDateTime="03/25/2017 01:28:40">
+    <Property Name="ElementName" Value="[dbo].[JobType].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[JobType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="JobTypeId" />
+  </Operation>
+</Operations>

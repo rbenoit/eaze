@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[ScraperJob]
+(
+	[RowId] BIGINT NOT NULL IDENTITY(1,1), 
+    [JobId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY NONCLUSTERED,	
+	[Url] NVARCHAR(1000) NOT NULL, 
+	[HttpStatusCode] int NULL,
+    [ResponseRaw] NTEXT NULL, 
+
+    CONSTRAINT [CIX_ScraperJob_RowId] UNIQUE CLUSTERED ([RowId])
+)
