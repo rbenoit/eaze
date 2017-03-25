@@ -5,6 +5,7 @@
     [JobType] INT NOT NULL, 
     [JobStatus] INT NOT NULL, 
 	[JobCreated] DATETIME2 NULL,
+	[CreatedBy] NVARCHAR(50) NOT NULL,
     [ProcessingPickUp] DATETIME2 NULL, 
     [ProcessingComplete] DATETIME2 NULL, 
     [ExecutionElapsed] BIGINT NULL, 
