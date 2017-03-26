@@ -90,5 +90,6 @@
     <None Include="ScraperDB.publish.xml" />
     <None Include="Scripts\Post-Deploy\Seed\dbo.JobType.seed.sql" />
     <None Include="Scripts\Post-Deploy\Seed\dbo.JobStatus.seed.sql" />
+    <None Include="ScraperDB.Test.publish.xml" />
   </ItemGroup>
 </Project>
