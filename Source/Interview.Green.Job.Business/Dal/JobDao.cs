@@ -71,5 +71,16 @@ namespace Interview.Green.Job.Business.Dal
         {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Inserts a new non task specific job (a no-operation job).
+        /// </summary>
+        /// <param name="jobId">The id of the job.</param>
+        /// <param name="createdBy">A string indicating who is creating this job, which can be used in later searches.</param>
+        /// <returns><c>True</c> if the job was created successfully; otherwise <c>False</c>.</returns>
+        public bool InsertNoOpJob(Guid jobId, string createdBy)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

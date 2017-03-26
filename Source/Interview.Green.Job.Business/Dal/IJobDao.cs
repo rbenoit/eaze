@@ -48,5 +48,14 @@ namespace Interview.Green.Job.Business.Dal
         /// <param name="jobType">A <see cref="JobType"/> value indicating which job type to process; otherwise <c>null</c> for all job types.</param>
         /// <returns>A list of <see cref="JobItem"/> items representing the jobs being processed.</returns>
         List<JobItem> PickupJobs(string processorKey, int maximumJobs, JobType? jobType);
+
+        /// <summary>
+        /// Inserts a new non task specific job (a no-operation job).
+        /// </summary>
+        /// <param name="jobId">The id of the job.</param>
+        /// <param name="createdBy">A string indicating who is creating this job, which can be used in later searches.</param>
+        /// <returns><c>True</c> if the job was created successfully; otherwise <c>False</c>.</returns>
+        bool InsertNoOpJob(Guid jobId, string createdBy);
+           
     }
 }
