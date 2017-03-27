@@ -22,11 +22,13 @@ namespace Interview.Green.Job.Common
 
         public DateTime? ProcessingComplete { get; set; }
 
-        public TimeSpan ElapsedTime { get; set; }
+        public TimeSpan? ElapsedTime { get; set; }
 
         public string ProcessorKey { get; set; }
 
         public int RetryCount { get; set; }
+
+        public string ErrorInformation { get; set; }
 
     }
 }

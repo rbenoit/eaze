@@ -11,6 +11,13 @@ namespace Interview.Green.Job.Common
     /// </summary>
     public class JobListFilter
     {
+        public const int DefaultPageSize = 10;
+
+        public JobListFilter()
+        {
+            PageSize = DefaultPageSize;
+        }
+
         public JobType? Type { get; set; }
 
         public JobStatus? Status { get; set; }

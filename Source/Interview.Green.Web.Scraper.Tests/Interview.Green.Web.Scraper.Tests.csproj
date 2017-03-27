@@ -104,6 +104,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\DAO\JobDaoTests.cs" />
+    <Compile Include="Integration\DAO\ScrapeJobDaoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,13 +115,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Interview.Green.Job.Business\Interview.Green.Job.Business.csproj">
+      <Project>{a528c2b5-35a0-4796-ae49-71336b3750cf}</Project>
+      <Name>Interview.Green.Job.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interview.Green.Job.Common\Interview.Green.Job.Common.csproj">
+      <Project>{f6f2eaa3-490c-40c6-b45e-d730a43c2e12}</Project>
+      <Name>Interview.Green.Job.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interview.Green.Web.Scraper\Interview.Green.Web.Scraper.csproj">
       <Project>{0F725E0C-7DD1-4CBB-86D8-A163E24B1CDF}</Project>
       <Name>Interview.Green.Web.Scraper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Integration\DAO\" />
     <Folder Include="Unit\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
