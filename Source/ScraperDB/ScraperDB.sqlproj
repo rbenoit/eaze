@@ -82,6 +82,7 @@
     <Build Include="dbo\Tables\dbo.JobStatus.sql" />
     <Build Include="dbo\Tables\dbo.JobType.sql" />
     <Build Include="dbo\Procedures\dbo.JobInsert.sql" />
+    <Build Include="dbo\Procedures\dbo.ScrapeJobUpdateComplete.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ScraperDB.refactorlog" />

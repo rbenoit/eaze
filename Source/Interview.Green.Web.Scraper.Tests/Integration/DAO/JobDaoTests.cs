@@ -319,7 +319,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
                 dao.InsertNoOpJob(expectedJobIds[i], staticCreatedBy);
 
             // Verify only 20 ready jobs in system
-            List<JobItem> list = dao.SelectJobList(new JobListFilter() { Status = JobStatus.Ready, PageSize = 99 });
+            List<JobItem> list = dao.SelectJobList(new JobListFilter() { Status = JobStatus.Ready, Type = JobType.None, PageSize = 99 });
             Assert.AreEqual(20, list.Count);
 
             // Spin off 10 threads, each limiting to 2 pickups each - create new instance of dao on each thread to simulate load from scheduler
