@@ -14,6 +14,8 @@ namespace Interview.Green.Job.Business.Dal
     /// </summary>
     public class JobDao : BaseDao, IJobDao
     {
+        private const int RetryMax = 2;
+
         /// <summary>
         /// Creates a new instance of <see cref="JobDao"/> connected to the proper data store.
         /// </summary>
@@ -143,31 +145,51 @@ namespace Interview.Green.Job.Business.Dal
         /// <param name="maximumJobs">The maximum number of jobs to process.</param>
         /// <param name="jobType">A <see cref="JobType"/> value indicating which job type to process; otherwise <c>null</c> for all job types.</param>
         /// <returns>A list of <see cref="JobItem"/> items representing the jobs being processed.</returns>
+        /// <remarks>As the central authority for scheduling, this data access operation uses a serializable transaction scope inside the stored procedure. 
+        /// As a result, under severe load it may reach an update deadlock. As a measure against this, a deadlock retry mechanism is utilized. In a real world scenario, this would be investigated
+        /// for a more scalable solution.</remarks>
         public List<JobProcessItem> PickupJobs(string processorKey, int maximumJobs, JobType? jobType)
         {
             List<JobProcessItem> list = new List<JobProcessItem>();
-            using (SqlConnection connection = GetConnection())
+            int retry = 0;
+            bool continueAttempt = true;
+            while (continueAttempt)
             {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("[dbo].[JobProcessPickup]", connection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ProcessorKey", processorKey);
-                cmd.Parameters.AddWithValue("@MaximumRows", maximumJobs);
-                if (jobType != null)
-                    cmd.Parameters.AddWithValue("@JobType", (int)jobType);
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while(reader.Read())
+                    using (SqlConnection connection = GetConnection())
                     {
-                        list.Add(new JobProcessItem()
+                        connection.Open();
+                        SqlCommand cmd = new SqlCommand("[dbo].[JobProcessPickup]", connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@ProcessorKey", processorKey);
+                        cmd.Parameters.AddWithValue("@MaximumRows", maximumJobs);
+                        if (jobType != null)
+                            cmd.Parameters.AddWithValue("@JobType", (int)jobType);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            JobId = (Guid)reader["JobId"],
-                            Type = (JobType)(int)reader["JobType"],
-                            RetryCount = (int)reader["RetryCount"]
-                        });
+                            while (reader.Read())
+                            {
+                                list.Add(new JobProcessItem()
+                                {
+                                    JobId = (Guid)reader["JobId"],
+                                    Type = (JobType)(int)reader["JobType"],
+                                    RetryCount = (int)reader["RetryCount"]
+                                });
+                            }
+                        }
+                        connection.Close();
+                        continueAttempt = false;
                     }
                 }
-                connection.Close();
+                catch(SqlException sx)
+                {
+                    if (sx.Message.Contains("deadlock"))
+                    {
+                        if (retry++ >= RetryMax)
+                            throw;
+                    }
+                }                
             }
 
             return list;
