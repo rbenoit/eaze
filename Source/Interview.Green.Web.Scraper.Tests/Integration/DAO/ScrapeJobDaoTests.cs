@@ -24,7 +24,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void ScrapeJobBatteryCompleteTest()
         {
             Guid expectedJobId = Guid.NewGuid();

@@ -104,9 +104,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssertUtility.cs" />
     <Compile Include="Integration\DAO\JobDaoTests.cs" />
     <Compile Include="Integration\DAO\ScrapeJobDaoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\Business\JobFacadeTests.cs" />
+    <Compile Include="Unit\MockJobDao.cs" />
+    <Compile Include="Unit\Test\AssertUtilityTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -128,9 +132,7 @@
       <Name>Interview.Green.Web.Scraper</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Unit\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

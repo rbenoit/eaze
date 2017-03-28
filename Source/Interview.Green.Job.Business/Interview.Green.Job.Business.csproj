@@ -47,6 +47,7 @@
     <Compile Include="Dal\IScrapeJobDao.cs" />
     <Compile Include="Dal\JobDao.cs" />
     <Compile Include="Dal\ScrapeJobDao.cs" />
+    <Compile Include="Facade\JobFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,5 +56,6 @@
       <Name>Interview.Green.Job.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,7 +27,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
             }
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void NoOpJobBatteryCancelTest()
         {
             // Arrange
@@ -78,7 +78,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void NoOpJobBatteryErrorTest()
         {
             // Arrange
@@ -125,7 +125,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
             Assert.IsNull(list[0].ElapsedTime);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void NoOpJobBatteryCompleteTest()
         {
             // Arrange
@@ -172,7 +172,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
             Assert.AreEqual(expectedMilliseconds, list[0].ElapsedTime.Value.TotalMilliseconds);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void NoOpJobBatteryPickupTest()
         {
             // Arrange
@@ -226,7 +226,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
             Assert.AreEqual(expectedMilliseconds, list[0].ElapsedTime.Value.TotalMilliseconds);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void NoOpJobJobListSelectTest()
         {
             // Arrange several jobs (20)
@@ -303,7 +303,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Integration.DAO
                 dao.UpdateJobStatusCancel(expectedJobIds[0]);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Integration")]
         public void NoOpJobPickupConcurrentTest()
         {
             // Arrange several jobs (20)

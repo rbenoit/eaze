@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations.cs" />
+    <Compile Include="GreenException.cs" />
+    <Compile Include="GreenValidationException.cs" />
     <Compile Include="JobItem.cs" />
     <Compile Include="JobListFilter.cs" />
     <Compile Include="JobProcessItem.cs" />
