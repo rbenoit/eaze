@@ -109,13 +109,12 @@ namespace Interview.Green.Job.Business.Facade
                 if (job.Status != JobStatus.Processing)
                     throw new GreenException(string.Format("Invalid job status '{0}', expected Processing for id: {1}", job.Status, jobId));
 
-                HttpWebRequest request = HttpWebRequest.CreateHttp(job.Url);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                string responseRaw = (new StreamReader(response.GetResponseStream())).ReadToEnd();
+                HttpStatusCode httpStatus;
+                string responseRaw = ProcessUriRequest(new Uri(job.Url), out httpStatus);
 
                 timer.Stop();
 
-                CompleteScrapeJob(jobId, timer.Elapsed, response.StatusCode, responseRaw);
+                CompleteScrapeJob(jobId, timer.Elapsed, httpStatus, responseRaw);
 
             }
             catch(Exception ex)
@@ -123,6 +122,21 @@ namespace Interview.Green.Job.Business.Facade
                 FailJob(jobId, ex.ToString());
             }
 
+        }
+
+        /// <summary>
+        /// Processes the uri and returns the raw response string.
+        /// </summary>
+        /// <param name="uri">Uri to process.</param>
+        /// <returns></returns>
+        protected string ProcessUriRequest(Uri uri, out HttpStatusCode httpStatus)
+        {
+            HttpWebRequest request = HttpWebRequest.CreateHttp(uri);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string responseRaw = (new StreamReader(response.GetResponseStream())).ReadToEnd();
+            httpStatus = response.StatusCode;
+
+            return responseRaw;
         }
     }
 }

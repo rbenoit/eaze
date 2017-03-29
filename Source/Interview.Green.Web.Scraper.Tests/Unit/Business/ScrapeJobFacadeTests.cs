@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Reflection;
 using Interview.Green.Job.Business.Facade;
 using Interview.Green.Job.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -99,13 +101,49 @@ namespace Interview.Green.Web.Scrapper.Tests.Unit.Business
             ScrapeJobFacade actual = new ScrapeJobFacade(() => new MockJobDao(), () => new MockScrapeJobDao());
 
             // Mock dao is no-op
-            //TODO: Need to break out functionality of actual request / response to test          
-
+            
             // Exception test
             // Empty job id not allowed
             AssertUtility.ThrowsException<ArgumentOutOfRangeException>(() => actual.ProccessScrapeJob(Guid.Empty));
         }
 
+        [TestMethod, TestCategory("Unit")]
+        public void ProcessUriRequestTest()
+        {
+            //TODO: All exception messages should be resource driven, using literal values for this excercise
+
+            // Set up facade with mock dao
+            ScrapeJobFacade actual = new ScrapeJobFacade(() => new MockJobDao(), () => new MockScrapeJobDao());
+
+            // Use valid uri for test, validate known string appears in response string
+            HttpStatusCode actualStatus;
+            string actualResponse = Call_ProcessUriRequest(actual, new Uri("http://stackoverflow.com"), out actualStatus);
+            Assert.IsNotNull(actualResponse);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(actualResponse));
+            Assert.AreEqual(HttpStatusCode.OK, actualStatus);
+            Assert.IsTrue(actualResponse.Contains("<title>Stack Overflow</title>"));
+
+            // Exception test
+            // Invalid site, expect web exception (wrapped in target invocation exception by caller)
+            AssertUtility.ThrowsException<TargetInvocationException>(() => Call_ProcessUriRequest(actual, new Uri("http://stackoverflowthisdomaindoesnotexist.com/"), out actualStatus));
+        }
+
+        /// <summary>
+        /// Reflective wrapper around protected "ProcessUriRequest" method to allow testing.
+        /// </summary>
+        /// <param name="obj">Instance of <see cref="ScrapeJobFacade"/> to invoke the method call from.</param>
+        /// <param name="uri">The uri parameter.</param>
+        /// <param name="httpStatus">The out status code value.</param>
+        /// <returns>Result of method call.</returns>
+        protected string Call_ProcessUriRequest(ScrapeJobFacade obj, Uri uri, out HttpStatusCode httpStatus)
+        {
+            MethodInfo method = obj.GetType().GetMethod("ProcessUriRequest", BindingFlags.Instance | BindingFlags.NonPublic);
+            object[] parameters = new object[] { uri, null };
+            string result = (string)method.Invoke(obj, parameters);
+            httpStatus = (HttpStatusCode)parameters[1];
+
+            return result;
+        }
 
     }
 }
