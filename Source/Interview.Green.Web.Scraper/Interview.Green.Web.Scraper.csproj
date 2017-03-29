@@ -122,13 +122,25 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Interview.Green.Job.Business\Interview.Green.Job.Business.csproj">
+      <Project>{a528c2b5-35a0-4796-ae49-71336b3750cf}</Project>
+      <Name>Interview.Green.Job.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interview.Green.Job.Common\Interview.Green.Job.Common.csproj">
+      <Project>{f6f2eaa3-490c-40c6-b45e-d730a43c2e12}</Project>
+      <Name>Interview.Green.Job.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\jobRequest.cs" />
+    <Compile Include="Models\jobResult.cs" />
+    <Compile Include="Models\scrapeJobResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
