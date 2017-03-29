@@ -68,7 +68,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Unit.Business
 
             // Exception test
             // Empty job id not allowed
-            AssertUtility.ThrowsException<ArgumentOutOfRangeException>(() => actual.GetScrapeJob(Guid.Empty));
+            AssertUtility.ThrowsException<ArgumentException>(() => actual.GetScrapeJob(Guid.Empty));
         }
 
         [TestMethod, TestCategory("Unit")]
@@ -86,7 +86,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Unit.Business
 
             // Exception test
             // Empty job id not allowed
-            AssertUtility.ThrowsException<ArgumentOutOfRangeException>(() => actual.CompleteScrapeJob(Guid.Empty, exepectedElapsedTime, System.Net.HttpStatusCode.Accepted, "abc"));
+            AssertUtility.ThrowsException<ArgumentException>(() => actual.CompleteScrapeJob(Guid.Empty, exepectedElapsedTime, System.Net.HttpStatusCode.Accepted, "abc"));
             // Null response not allowed
             AssertUtility.ThrowsException<ArgumentNullException>(() => actual.CompleteScrapeJob(Guid.NewGuid(), exepectedElapsedTime, System.Net.HttpStatusCode.Accepted, null));
 
@@ -104,7 +104,7 @@ namespace Interview.Green.Web.Scrapper.Tests.Unit.Business
             
             // Exception test
             // Empty job id not allowed
-            AssertUtility.ThrowsException<ArgumentOutOfRangeException>(() => actual.ProccessScrapeJob(Guid.Empty));
+            AssertUtility.ThrowsException<ArgumentException>(() => actual.ProccessScrapeJob(Guid.Empty));
         }
 
         [TestMethod, TestCategory("Unit")]

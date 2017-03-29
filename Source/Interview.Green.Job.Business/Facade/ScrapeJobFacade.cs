@@ -65,7 +65,7 @@ namespace Interview.Green.Job.Business.Facade
         public ScrapeJob GetScrapeJob(Guid jobId)
         {
             if (jobId == Guid.Empty)
-                throw new ArgumentOutOfRangeException("Job id cannot be empty.");
+                throw new ArgumentException("Job id cannot be empty.");
 
             IScrapeJobDao dao = CreateScrapeDao();
             return dao.SelectScrapeJob(jobId);
@@ -81,7 +81,7 @@ namespace Interview.Green.Job.Business.Facade
         public void CompleteScrapeJob(Guid jobId, TimeSpan elapsedTime, HttpStatusCode httpStatus, string responseRaw)
         {
             if (jobId == Guid.Empty)
-                throw new ArgumentOutOfRangeException("Job id cannot be empty.");
+                throw new ArgumentException("Job id cannot be empty.");
             if (responseRaw == null)
                 throw new ArgumentNullException("responseRaw");
 
@@ -96,7 +96,7 @@ namespace Interview.Green.Job.Business.Facade
         public void ProccessScrapeJob(Guid jobId)
         {
             if (jobId == Guid.Empty)
-                throw new ArgumentOutOfRangeException("Job id cannot be empty.");
+                throw new ArgumentException("Job id cannot be empty.");
 
             try
             {
