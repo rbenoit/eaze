@@ -61,7 +61,7 @@ namespace Interview.Green.Job.Business.Facade
         public bool CancelJob(Guid jobId)
         {
             if (jobId == Guid.Empty)
-                throw new ArgumentOutOfRangeException("Job id cannot be empty.");
+                throw new ArgumentException("Job id cannot be empty.");
 
             IJobDao dao = CreateJobDao();
             return dao.UpdateJobStatusCancel(jobId);
@@ -75,7 +75,7 @@ namespace Interview.Green.Job.Business.Facade
         public void FailJob(Guid jobId, string errorInformation)
         {
             if (jobId == Guid.Empty)
-                throw new ArgumentOutOfRangeException("Job id cannot be empty.");
+                throw new ArgumentException("Job id cannot be empty.");
 
             if (errorInformation == null)
                 throw new ArgumentNullException("errorInformation");
@@ -92,7 +92,7 @@ namespace Interview.Green.Job.Business.Facade
         public void CompleteJob(Guid jobId, TimeSpan elapsedTime)
         {
             if (jobId == Guid.Empty)
-                throw new ArgumentOutOfRangeException("Job id cannot be empty.");
+                throw new ArgumentException("Job id cannot be empty.");
 
             IJobDao dao = CreateJobDao();
             dao.UpdateJobStatusComplete(jobId, elapsedTime);
