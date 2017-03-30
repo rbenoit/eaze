@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{40AA01C3-E153-4EFE-9A51-B52091703298}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Interview.Green.Web.Scrapper.Service</RootNamespace>
     <AssemblyName>Interview.Green.Web.Scrapper.Service</AssemblyName>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Interview.Green.Web.Scrapper.Service.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
@@ -43,7 +46,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,12 +57,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JobProcessorService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="JobSchedulerService.cs" />
+    <Compile Include="ProcessorJob.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebScrapService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interview.Green.Job.Business\Interview.Green.Job.Business.csproj">
+      <Project>{a528c2b5-35a0-4796-ae49-71336b3750cf}</Project>
+      <Name>Interview.Green.Job.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interview.Green.Job.Common\Interview.Green.Job.Common.csproj">
+      <Project>{f6f2eaa3-490c-40c6-b45e-d730a43c2e12}</Project>
+      <Name>Interview.Green.Job.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
