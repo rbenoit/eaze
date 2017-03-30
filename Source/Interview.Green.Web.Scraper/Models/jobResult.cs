@@ -7,6 +7,9 @@ using Interview.Green.Job.Common;
 
 namespace Interview.Green.Web.Scrapper.Models
 {
+    /// <summary>
+    /// API response model for existing jobs.
+    /// </summary>
     [DataContract()]
     public class jobResult
     {
@@ -40,6 +43,10 @@ namespace Interview.Green.Web.Scrapper.Models
         [DataMember(EmitDefaultValue = false)]
         public string errorInformation { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of this model using a business level POCO as a data source.
+        /// </summary>
+        /// <param name="source"></param>
         public jobResult(JobItem source)
         {
             id = source.JobId;

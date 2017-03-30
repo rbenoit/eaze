@@ -23,7 +23,7 @@ namespace Interview.Green.Web.Scrapper.Models
         public string url { get; set; }
 
         [DataMember()]
-        public int httpStatusCode { get; set; }
+        public int? httpStatusCode { get; set; }
 
         [DataMember()]
         public string responseRaw { get; set; }

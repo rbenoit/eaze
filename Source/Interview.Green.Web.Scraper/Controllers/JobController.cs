@@ -11,6 +11,10 @@ using Interview.Green.Web.Scrapper.Models;
 
 namespace Interview.Green.Web.Scraper.Controllers
 {
+    /// <summary>
+    /// Controller for api/job endpoints.
+    /// </summary>
+    /// <remarks>This class should do a better job of wrapping known exceptions and passing more consistent data back to the client, however due to time constraints this was not completed.</remarks>
     public class JobController : ApiController
     {
         private Func<IJobDao> JobDaoMethod { get; set; }
